@@ -63,7 +63,7 @@ class RecipeApp(ctk.CTk):
         # dropdown menu for vegetable options
         self.vegetable_options = ctk.CTkOptionMenu(
             self.main_result,
-            values=[" ", "Broccoli", "Green Beans", "Mushrooms"],
+            values=[" ", "Leaves", "Greens", "Leaves"],
             command=self.update_main_choice
         )
         self.vegetable_options.pack(pady=10)
@@ -179,8 +179,7 @@ class RecipeApp(ctk.CTk):
         self.show_main_recipe()
         print("Selected main choices:", selected_mains)
         return selected_mains
-        
-    #checks user inputs and matches to column 0 in text file, outputs selected recipe in window
+    
     def show_dessert_recipe(self):
         dessert_choices = [self.flavor_options.get(), self.temp_options.get(), self.texture_options.get()]
         selected_dessert = []
@@ -201,7 +200,7 @@ class RecipeApp(ctk.CTk):
         self.dessert_display.configure(text=f"Matching dessert recipes: {selected_dessert}")
 
     def show_main_recipe(self):
-        main_choices = [self.vegetable_options.get(), self.meat_options.get(), self.starch_options.get()]
+        main_choices = [self.meat_options.get(), self.vegetable_options.get(), self.starch_options.get()]
         selected_main = []
 
         with open("Hack BI Mains Catalogue.txt", "r") as mains:
