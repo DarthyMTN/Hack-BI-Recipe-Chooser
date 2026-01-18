@@ -19,7 +19,7 @@ In the selection screens, the user can select what types of ingredients they wan
 --AI Usage--
 
 We used [Google Gemini 3 Fast] on this project to assist us with learning the customtkinter library and to help troubleshoot the code.
-AI impacted our functions, as we asked it to troubleshoot those functions for us.
+AI impacted most of our functions, as we asked it to troubleshoot those functions for us. Additionally, we asked it for help with figuring out how to code the basic structure of those functions
 We also used [Google Gemini 3 Fast] to come up with recipe names and speed up the process of finding 50+ recipes
   
 
