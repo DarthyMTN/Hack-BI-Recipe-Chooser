@@ -32,10 +32,10 @@ class RecipeApp(ctk.CTk):
         self.subtitle = ctk.CTkLabel(self.home_frame, text="Choose your meal type",font=("Arial", 20), text_color="white")
         self.subtitle.grid(row=1, column=1, columnspan=1, padx=0, pady=5)
 
-        self.btn_main = ctk.CTkButton(self.home_frame, text="Main", command=self.show_main_recipe)
+        self.btn_main = ctk.CTkButton(self.home_frame, text="Main", command=self.show_main_frame)
         self.btn_main.grid(row=2, column=1, padx=0, pady=5)
         
-        self.btn_dessert = ctk.CTkButton(self.home_frame, text="Dessert", command=self.show_dessert_recipe)
+        self.btn_dessert = ctk.CTkButton(self.home_frame, text="Dessert", command=self.show_dessert_frame)
         self.btn_dessert.grid(row=3, column=1, padx=0, pady=5)
         
 
@@ -153,11 +153,11 @@ class RecipeApp(ctk.CTk):
 
 
     # functions for displaying recipe choices - syntax copied from show_home function
-    def show_main_recipe(self):
+    def show_main_frame(self):
         self.home_frame.pack_forget()   # Hide home
         self.main_result.pack(expand=True, fill="both")
 
-    def show_dessert_recipe(self):
+    def show_dessert_frame(self):
         self.home_frame.pack_forget()
         self.dessert_result.pack(expand=True, fill="both")
 
@@ -170,13 +170,55 @@ class RecipeApp(ctk.CTk):
 
     def get_dessert_list(self):
         selected_dessert = [self.flavor_options.get(), self.temp_options.get(), self.texture_options.get()]
+        self.show_dessert_recipe()
         print("Selected dessert choices:", selected_dessert)
         return selected_dessert
     
     def get_main_list(self):
         selected_mains = [self.vegetable_options.get(), self.meat_options.get(), self.starch_options.get()]
+        self.show_main_recipe()
         print("Selected main choices:", selected_mains)
         return selected_mains
+        
+    #checks user inputs and matches to column 0 in text file, outputs selected recipe in window
+    def show_dessert_recipe(self):
+        dessert_choices = [self.flavor_options.get(), self.temp_options.get(), self.texture_options.get()]
+        selected_dessert = []
+    
+        with open("Hack BI Desserts Catalogue.txt", "r") as desserts:
+            for dessert in desserts:
+
+                columns = [item.strip() for item in dessert.split(",")]
+
+                recipe_name=columns[0]
+                recipe_traits=columns[1:4]
+
+                if recipe_traits == dessert_choices:
+                    print("true")
+                    selected_dessert.append(recipe_name)
+
+        print("Matching dessert recipes:", selected_dessert)
+        self.dessert_display.configure(text=f"Matching dessert recipes: {selected_dessert}")
+
+    def show_main_recipe(self):
+        main_choices = [self.vegetable_options.get(), self.meat_options.get(), self.starch_options.get()]
+        selected_main = []
+
+        with open("Hack BI Mains Catalogue.txt", "r") as mains:
+            for main in mains:
+
+                columns = [item.strip() for item in main.split(",")]
+
+                recipe_name=columns[0]
+                recipe_traits=columns[1:4]
+
+                if recipe_traits == main_choices:
+                    print("true")
+                    selected_main.append(recipe_name)
+
+        print("Matching main recipes:", selected_main)
+        self.dessert_display.configure(text=f"Matching main recipes: {selected_main}")       
+      
 
 if __name__ == "__main__":
     app = RecipeApp()
