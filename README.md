@@ -35,6 +35,8 @@ We also used [Google Gemini 3 Fast] to come up with recipe names and speed up th
 
 "how can i clean the text file to read values" - learning how to clean data to easily read later
 
+"how can i check through a list of values" - learning how to iterate and check through a list and later, comparing them to set list
+
   
   
   
