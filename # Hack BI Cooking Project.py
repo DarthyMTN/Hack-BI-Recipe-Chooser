@@ -41,7 +41,7 @@ class RecipeApp(ctk.CTk):
         # dropdown menu for meat options
         self.meat_options = ctk.CTkOptionMenu(
             self.main_result, 
-            values=[" ", "Steak", "Chicken", "Fish", "Pork],
+            values=[" ", "Steak", "Chicken", "Fish", "Pork"],
             command=self.update_main_choice # Calls the function when changed
         )
         self.meat_options.pack(pady=10)
@@ -235,5 +235,6 @@ class RecipeApp(ctk.CTk):
 if __name__ == "__main__":
     app = RecipeApp()
     app.mainloop()
+
 
 
