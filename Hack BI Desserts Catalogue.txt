@@ -1,0 +1,27 @@
+Vanilla Bread Pudding, Plain, Hot, Soft
+Churros, Plain, Hot, Crunchy
+Warm Glazed Mochi, Plain, Hot, Chewy
+Soft Serve Vanilla Ice Cream, Plain, Cold, Soft
+Fried Ice Cream, Plain, Cold, Crunchy
+Ice Cream Mochi, Plain, Cold, Chewy
+Angel Food Cake, Plain, Room Temp, Soft
+Shortbread Cookies, Plain, Room Temp, Crunchy
+Rice Krispie Treats, Plain, Room Temp, Chewy
+Chocolate Lava Cake, Chocolate, Hot, Soft
+Chocolate Soufflé, Chocolate, Hot, Crunchy
+Warm Chocolate Chip Cookie, Chocolate, Hot, Chewy
+Chocolate Mousse, Chocolate, Cold, Soft
+Mint Chocolate Chip Ice Cream, Chocolate, Cold, Crunchy
+Brownie Sunday, Chocolate, Cold, Chewy
+Chocolate Fudge, Chocolate, Room Temp, Soft
+Peppermint Bark, Chocolate, Room Temp, Crunchy
+Chocolate Taffy, Chocolate, Room Temp, Chewy
+Baked Apples with Cinnamon, Fruity, Hot, Soft
+Peach Cobbler, Fruity, Hot, Crunchy
+Grilled Pineapple with Honey Glaze, Fruity, Hot, Chewy
+Mango Sorbet, Fruity, Cold, Soft
+Strawberry Popsicle, Fruity, Cold, Crunchy
+Fruit Jello, Fruity, Cold, Chewy
+Banana Bread, Fruity, Room Temp, Soft
+Raspberry Macarons, Fruity, Room Temp, Crunchy
+Panna Cotta, Fruity, Room Temp, Chewy
