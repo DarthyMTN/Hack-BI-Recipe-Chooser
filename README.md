@@ -33,6 +33,8 @@ We also used [Google Gemini 3 Fast] to come up with recipe names and speed up th
 
 "how do i call the list function do print the user's inputs?" - troubleshooting why the lists weren't printing, suggested a confirm button
 
+"how can i clean the text file to read values" - learning how to clean data to easily read later
+
   
   
   
