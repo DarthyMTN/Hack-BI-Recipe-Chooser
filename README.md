@@ -31,9 +31,7 @@ We also used [Google Gemini 3 Fast] to come up with recipe names and speed up th
 
 "if you have multiple drop down menus, how would you store all of those values in a list" - learning how to store multiple values from multiple drop down lists
 
-"how do i print the list somewhere" - learning how to print from the list
-
-"how do i call the list function" - troubleshooting why the lists weren't printing, suggested a confirm button
+"how do i call the list function do print the user's inputs?" - troubleshooting why the lists weren't printing, suggested a confirm button
 
   
   
