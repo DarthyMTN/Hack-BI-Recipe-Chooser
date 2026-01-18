@@ -1,0 +1,183 @@
+# Hack BI Cooking Project
+# The purpose of this program is to give the user a recipe based on the choices of given ingredients that they make
+
+import customtkinter as ctk
+
+# Documentation for customtkinter: https://customtkinter.tomschimansky.com/tutorial/grid-system
+
+with open("Hack BI Mains Catalogue", "r") as mains:
+    content1 = mains.read()
+print(content1)
+
+print(" ")
+
+with open("Hack BI Desserts Catalogue", "r") as desserts:
+    content2 = desserts.read()
+print(content2)
+
+class RecipeApp(ctk.CTk):
+    def __init__(self):
+        ctk.set_window_scaling(1.0)
+        super().__init__()
+    
+        self.geometry("800x500")
+        self.title("Recipe Selector")
+
+        #screen 1: Choosing the type of meal 
+        self.home_frame = ctk.CTkFrame(self, fg_color="transparent")
+        
+        self.title_label = ctk.CTkLabel(self.home_frame, text="Recipe Selector", font=("Arial", 40, "bold"), text_color="white")
+        self.title_label.grid(row=0, column=0, columnspan=2, padx=20, pady=20)
+        
+        self.subtitle = ctk.CTkLabel(self.home_frame, text="Choose your meal type",font=("Arial", 20), text_color="white")
+        self.subtitle.grid(row=1, column=1, columnspan=1, padx=0, pady=5)
+
+        self.btn_main = ctk.CTkButton(self.home_frame, text="Main", command=self.show_main_recipe)
+        self.btn_main.grid(row=2, column=1, padx=0, pady=5)
+        
+        self.btn_dessert = ctk.CTkButton(self.home_frame, text="Dessert", command=self.show_dessert_recipe)
+        self.btn_dessert.grid(row=3, column=1, padx=0, pady=5)
+        
+
+        #screen 2 : Choosing the meat, starch, and vegetable
+        self.main_result = ctk.CTkFrame(self, fg_color="transparent")
+        
+
+        # display question for meat choice
+        self.main_title = ctk.CTkLabel(self.main_result, text="What kind of meat would you like?", font=("Arial", 20, "bold"))
+        self.main_title.pack(pady=20)
+
+        # dropdown menu for meat options
+        self.meat_options = ctk.CTkOptionMenu(
+            self.main_result, 
+            values=[" ", "Steak", "Chicken", "Fish", "Pork", "No meat"],
+            command=self.update_main_choice # Calls the function when changed
+        )
+        self.meat_options.pack(pady=10)
+
+
+        # display question for vegetable choice
+        self.main_title = ctk.CTkLabel(self.main_result, text="What kind of vegetable would you like?", font=("Arial", 20, "bold"))
+        self.main_title.pack(pady=20)
+
+        # dropdown menu for vegetable options
+        self.vegetable_options = ctk.CTkOptionMenu(
+            self.main_result,
+            values=[" ", "Broccoli", "Green Beans", "Mushrooms"],
+            command=self.update_main_choice
+        )
+        self.vegetable_options.pack(pady=10)
+
+
+        # display question for starch choice
+        self.main_title = ctk.CTkLabel(self.main_result, text="What kind of starch would you like?", font=("Arial", 20, "bold"))
+        self.main_title.pack(pady=20)
+        
+        # dropdown menu for starch options
+        self.starch_options = ctk.CTkOptionMenu(
+            self.main_result,
+            values=[" ", "Pasta", "Potatoes", "Rice"],
+            command=self.update_main_choice
+        )
+        self.starch_options.pack(pady=10)
+
+        # create empty textbox to show choices
+        self.main_display = ctk.CTkLabel(self.main_result, text="", font=("Arial", 18))
+        self.main_display.pack(pady=20)
+        
+        # create button to finalize choices
+        self.btn_finalize = ctk.CTkButton(self.main_result, text="Confirm Main Choices", command=self.get_main_list)
+        self.btn_finalize.pack(pady=20)
+
+
+
+        #screen 3 : Choosing dessert types
+        self.dessert_result = ctk.CTkFrame(self, fg_color="transparent")
+        
+
+        # display question for flavor choice
+        self.main_title = ctk.CTkLabel(self.dessert_result, text="What kind of flavor dessert would you like?", font=("Arial", 20, "bold"))
+        self.main_title.pack(pady=20)
+
+        # dropdown menu for flavor options
+        self.flavor_options = ctk.CTkOptionMenu(
+            self.dessert_result,
+            values=[" ", "Chocolate", "Fruity", "Plain"],
+            command= self.update_dessert_choice
+        )
+        self.flavor_options.pack(pady=10)
+
+
+        # display question for temperature choice
+        self.main_title = ctk.CTkLabel(self.dessert_result, text="What temperature would you like your dessert to be?", font=("Arial", 20, "bold"))
+        self.main_title.pack(pady=20)
+
+        # dropdown menu for temperature options
+        self.temp_options = ctk.CTkOptionMenu(
+            self.dessert_result,
+            values=[" ", "Hot", "Cold", "Room Temperature"],
+            command= self.update_dessert_choice
+        )
+        self.temp_options.pack(pady=10)
+
+
+        # display question for texture choice
+        self.main_title = ctk.CTkLabel(self.dessert_result, text="What kind of texture would you like?", font=("Arial", 20, "bold"))
+        self.main_title.pack(pady=20)
+
+        # dropdown menu for texture options
+        self.texture_options = ctk.CTkOptionMenu(
+            self.dessert_result,
+            values=[" ", "Soft", "Crunchy", "Chewy"],
+            command= self.update_dessert_choice
+        )
+        self.texture_options.pack(pady=10)
+
+        # create empty textbox to show choices
+        self.dessert_display = ctk.CTkLabel(self.dessert_result, text="", font=("Arial", 18))
+        self.dessert_display.pack(pady=20)
+
+        # create button to confirm choices
+        self.btn_finalize = ctk.CTkButton(self.dessert_result, text="Confirm Dessert Choices", command=self.get_dessert_list)
+        self.btn_finalize.pack(pady=20)
+
+        # Show the home frame on startup
+        self.show_home()
+
+        
+    # function was derived from Google Gemini - switches frame based on the type of meal
+    def show_home(self):
+        self.main_result.pack_forget()  # Hide results
+        self.dessert_result.pack_forget()  # Hide results
+        self.home_frame.pack(expand=True, fill="both") # Show home
+
+
+    # functions for displaying recipe choices - syntax copied from show_home function
+    def show_main_recipe(self):
+        self.home_frame.pack_forget()   # Hide home
+        self.main_result.pack(expand=True, fill="both")
+
+    def show_dessert_recipe(self):
+        self.home_frame.pack_forget()
+        self.dessert_result.pack(expand=True, fill="both")
+
+    # update functions to gather data
+    def update_dessert_choice(self, choice):
+        self.dessert_display.configure(text=f"You selected: {choice} 🍨")
+
+    def update_main_choice(self, choice):
+        self.main_display.configure(text=f"You selected: {choice} 🍽️")
+
+    def get_dessert_list(self):
+        selected_dessert = [self.flavor_options.get(), self.temp_options.get(), self.texture_options.get()]
+        print("Selected dessert choices:", selected_dessert)
+        return selected_dessert
+    
+    def get_main_list(self):
+        selected_mains = [self.vegetable_options.get(), self.meat_options.get(), self.starch_options.get()]
+        print("Selected main choices:", selected_mains)
+        return selected_mains
+
+if __name__ == "__main__":
+    app = RecipeApp()
+    app.mainloop()
