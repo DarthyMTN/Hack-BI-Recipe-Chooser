@@ -5,13 +5,13 @@ import customtkinter as ctk
 
 # Documentation for customtkinter: https://customtkinter.tomschimansky.com/tutorial/grid-system
 
-with open("Hack BI Mains Catalogue", "r") as mains:
+with open("Hack BI Mains Catalogue.txt", "r") as mains:
     content1 = mains.read()
 print(content1)
 
 print(" ")
 
-with open("Hack BI Desserts Catalogue", "r") as desserts:
+with open("Hack BI Desserts Catalogue.txt", "r") as desserts:
     content2 = desserts.read()
 print(content2)
 
