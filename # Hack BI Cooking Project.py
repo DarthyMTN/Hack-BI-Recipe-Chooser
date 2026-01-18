@@ -5,16 +5,6 @@ import customtkinter as ctk
 
 # Documentation for customtkinter: https://customtkinter.tomschimansky.com/tutorial/grid-system
 
-with open("Hack BI Mains Catalogue.txt", "r") as mains:
-    content1 = mains.read()
-print(content1)
-
-print(" ")
-
-with open("Hack BI Desserts Catalogue.txt", "r") as desserts:
-    content2 = desserts.read()
-print(content2)
-
 class RecipeApp(ctk.CTk):
     def __init__(self):
         ctk.set_window_scaling(1.0)
@@ -63,7 +53,7 @@ class RecipeApp(ctk.CTk):
         # dropdown menu for vegetable options
         self.vegetable_options = ctk.CTkOptionMenu(
             self.main_result,
-            values=[" ", "Leaves", "Greens", "Leaves"],
+            values=[" ", "Leaves", "Greens", "Legumes"],
             command=self.update_main_choice
         )
         self.vegetable_options.pack(pady=10)
@@ -160,6 +150,20 @@ class RecipeApp(ctk.CTk):
     def show_dessert_frame(self):
         self.home_frame.pack_forget()
         self.dessert_result.pack(expand=True, fill="both")
+    
+    # functions for displaying recipe results
+    def show_main_recipe(self):
+        self.home_frame.pack_forget()
+        self.main_choice.pack(expand=True, fill="both")
+        self.main_recipe = ctk.CTkLabel(self.main_result, text="What kind of starch would you like?", font=("Arial", 20, "bold"))
+        self.main_recipe.pack(pady=20)
+
+
+    def show_dessert_recipe(self):
+        self.home_frame.pack_forget()
+        self.main_choice.pack(exoand=True, fill="both")
+        self.dessert_recipe = ctk.CTkLabel(self.main_result, text="What kind of starch would you like?", font=("Arial", 20, "bold"))
+        self.dessert_recipe.pack(pady=20)
 
     # update functions to gather data
     def update_dessert_choice(self, choice):
@@ -180,11 +184,14 @@ class RecipeApp(ctk.CTk):
         print("Selected main choices:", selected_mains)
         return selected_mains
     
+
+    # this function was derived from Google Gemini, but altered to fit our program
+    # checks if the user's choices match any combination of dessert items in the text file
     def show_dessert_recipe(self):
         dessert_choices = [self.flavor_options.get(), self.temp_options.get(), self.texture_options.get()]
         selected_dessert = []
     
-        with open("Hack BI Desserts Catalogue.txt", "r") as desserts:
+        with open("Hack BI Desserts Catalogue", "r") as desserts:
             for dessert in desserts:
 
                 columns = [item.strip() for item in dessert.split(",")]
@@ -196,14 +203,18 @@ class RecipeApp(ctk.CTk):
                     print("true")
                     selected_dessert.append(recipe_name)
 
+        final_dessert_recipe = selected_dessert[0]
         print("Matching dessert recipes:", selected_dessert)
-        self.dessert_display.configure(text=f"Matching dessert recipes: {selected_dessert}")
+        self.dessert_display.configure(text=f"You should make: {final_dessert_recipe}!")
+        self.show_dessert_recipe()
 
+
+    # checks if the user's choices match any combination of main items in the text file (syntax copied from previous function)
     def show_main_recipe(self):
         main_choices = [self.meat_options.get(), self.vegetable_options.get(), self.starch_options.get()]
         selected_main = []
 
-        with open("Hack BI Mains Catalogue.txt", "r") as mains:
+        with open("Hack BI Mains Catalogue", "r") as mains:
             for main in mains:
 
                 columns = [item.strip() for item in main.split(",")]
@@ -215,8 +226,10 @@ class RecipeApp(ctk.CTk):
                     print("true")
                     selected_main.append(recipe_name)
 
+        final_main_recipe = selected_main[0]
         print("Matching main recipes:", selected_main)
-        self.main_display.configure(text=f"Matching main recipes: {selected_main}")       
+        self.main_display.configure(text=f"You should make: {final_main_recipe}!")
+        self.show_main_recipe()       
 
 if __name__ == "__main__":
     app = RecipeApp()
