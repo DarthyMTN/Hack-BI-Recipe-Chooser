@@ -4,6 +4,7 @@
 import customtkinter as ctk
 
 # Documentation for customtkinter: https://customtkinter.tomschimansky.com/tutorial/grid-system
+# Google Gemini - used for learning the customtkinter and deriving a few functions to make our program work: https://gemini.google.com/app
 
 class RecipeApp(ctk.CTk):
     def __init__(self):
