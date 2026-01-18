@@ -216,8 +216,7 @@ class RecipeApp(ctk.CTk):
                     selected_main.append(recipe_name)
 
         print("Matching main recipes:", selected_main)
-        self.dessert_display.configure(text=f"Matching main recipes: {selected_main}")       
-      
+        self.main_display.configure(text=f"Matching main recipes: {selected_main}")       
 
 if __name__ == "__main__":
     app = RecipeApp()
