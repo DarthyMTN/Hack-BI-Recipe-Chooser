@@ -192,7 +192,7 @@ class RecipeApp(ctk.CTk):
         dessert_choices = [self.flavor_options.get(), self.temp_options.get(), self.texture_options.get()]
         selected_dessert = []
     
-        with open("Hack BI Desserts Catalogue", "r") as desserts:
+        with open("Hack BI Desserts Catalogue.txt", "r") as desserts:
             for dessert in desserts:
 
                 columns = [item.strip() for item in dessert.split(",")]
@@ -215,7 +215,7 @@ class RecipeApp(ctk.CTk):
         main_choices = [self.meat_options.get(), self.vegetable_options.get(), self.starch_options.get()]
         selected_main = []
 
-        with open("Hack BI Mains Catalogue", "r") as mains:
+        with open("Hack BI Mains Catalogue.txt", "r") as mains:
             for main in mains:
 
                 columns = [item.strip() for item in main.split(",")]
@@ -235,3 +235,4 @@ class RecipeApp(ctk.CTk):
 if __name__ == "__main__":
     app = RecipeApp()
     app.mainloop()
+
